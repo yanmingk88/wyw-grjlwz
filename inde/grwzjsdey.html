@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="专业前端开发工程师的个人简历">
+    <title>烟民k - 前端开发工程师</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --radius: 10px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fb;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 卡片通用样式 */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            height: calc(100% - 10px);
+            width: 2px;
+            background: var(--primary);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-subtitle {
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 技能树样式 */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category h3 {margin-bottom: 1rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* 项目样式 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .project-card {
+            border: 1px solid #e9ecef;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            border-color: var(--primary);
+        }
+        
+        .project-header {
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .project-tech {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .project-body {
+            padding: 1.2rem;
+        }
+        
+        .project-highlights {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 1.5rem;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <header>
+            <img src="ymkzp.jpg" alt="图片加载失败" class="avatar"title="网络图片侵权告知">
+            <h1 class="name">烟民k</h1>
+            <p class="title">高级前端开发工程师 | 用户体验设计师</p >
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>973836184@qq.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>193-9122-6694</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>http://暂时没有意思一下/dyggrwy.html</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>http://无域名意思一下/dyggrwy.html</span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- 关于我 -->
+        <section class="card">
+            <h2 class="section-title">关于我</h2>
+            <p>拥有6年前端开发经验的专业工程师，专注于创建高性能、用户友好的Web应用。精通现代JavaScript框架和响应式设计，热衷于将复杂需求转化为直观的用户界面。曾领导团队完成多个大型电商平台和SaaS产品的前端架构设计，用户量超百万。</p >
+            <p>技术理念：注重代码质量与可维护性，坚持"移动优先"设计原则，擅长通过性能优化提升用户体验。持续关注Web技术发展趋势，积极参与开源社区贡献。</p >
+            <p>吹个牛逼，但是我相信我会走到那一步的，肯定还会做的更好。</p>
+            </section>
+        
+        <!-- 工作经历 -->
+        <section class="card">
+            <h2 class="section-title">工作经历</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 - 至今</div>
+                    <h3 class="timeline-title">高级前端工程师</h3>
+                    <div class="timeline-subtitle">科技先锋有限公司 | 上海</div>
+                    <ul class="project-highlights">
+                        <li>领导15人前端团队重构电商平台，首屏加载时间减少60%</li>
+                        <li>设计组件库提高团队开发效率40%，被公司评为年度技术创新奖</li>
+                        <li>实现CI/CD自动化部署流程，版本发布周期从2周缩短至1天</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2017 - 2020</div>
+                    <h3 class="timeline-title">前端开发工程师</h3>
+                    <div class="timeline-subtitle">创新科技有限公司 | 北京</div>
+                    <ul class="project-highlights">
+                        <li>开发企业级SaaS平台，服务300+企业客户</li>
+                        <li>优化Web应用性能，Google Lighthouse评分提升至95+</li>
+                        <li>实施响应式设计策略，移动端用户转化率提升25%</li>
+                        <li>吹个牛逼，但是我相信我会走到那一步的，肯定还会做的更好。</li>
+                    </ul>	</div>
+            </div>
+        </section>
+        
+        <!-- 教育背景 -->
+        <section class="card">
+            <h2 class="section-title">教育背景</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2013 - 2017</div>
+                    <h3 class="timeline-title">计算机科学与技术 学士</h3>
+                    <div class="timeline-subtitle">北京大学 | GPA 3.8/4.0</div>
+                    <p>主修课程：Web前端技术、人机交互设计、数据结构与算法、计算机网络</p >
+                    <p>其实小学毕业证都没有，但是活到老学到老呀。</p>
+                    </div>
+            </div>
+        </section>
+        
+        <!-- 技能树 -->
+        <section class="card">
+            <h2 class="section-title">技术能力</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> 前端技术</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">JavaScript/ES6+</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">HTML5/CSS3</span>
+                        <span class="skill-tag">SASS/LESS</span>
+                        <span class="skill-tag">其实目前就会点html标记语而且还不太牛逼</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> 开发工具</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Webpack</span>
+                        <span class="skill-tag">Vite</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Jest</span>
+                        <span class="skill-tag">Cypress</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">慢慢来不急循序渐进会玩牛逼的</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> 其他技术</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">RESTful API</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">相信自己加油烟民k</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 项目经验 -->
+        <section class="card">
+            <h2 class="section-title">项目经验</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">全球电商平台重构</h3>
+                        <div class="project-tech">React · Redux · Node.js · AWS</div>
+                    </div>
+                    <div class="project-body">
+                        <p>领导前端架构设计和实施，服务全球200万+用户：</p >
+                        <ul class="project-highlights">
+                            <li>实现微前端架构，各业务模块独立开发部署</li>
+                            <li>优化核心路径性能，购物车加载时间减少70%</li>
+                            <li>设计通用组件库覆盖90%业务场景</li>
+                            <li>这个吹的好吧目前项目都没摸过</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">企业数据可视化平台</h3>
+                        <div class="project-tech">Vue.js · D3.js · WebSocket · MongoDB</div>
+                    </div>
+                    <div class="project-body">
+                        <p>从零构建实时数据分析和可视化系统：</p >
+                        <ul class="project-highlights">
+                            <li>实现10+种实时数据图表和仪表盘</li>
+                            <li>开发数据预警系统，错误响应时间缩短至5秒内</li>
+                            <li>采用WebSocket实现实时数据推送</li>
+                            <li>这个更是吹的厉害平台都吹出来了才学7天<img src="wunaidx.png"style="max-width: 35px;"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer>
+            <div
+            style=
+            'text-align: center;
+         '><a href="index.html">返回首页</a>
+         </div>
+            <p>© 2025 烟民k - 个人简历 | 最后更新: 2025年8月</p >
+        </footer>
+    </div>
+</body>
+</html>
+            
